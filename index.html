@@ -240,65 +240,226 @@
 <section class="final-cta" id="enroll">
   <div class="wrap">
     <div class="section-head center">
-      <div class="kicker">// apply</div>
+      <div class="kicker"> apply</div>
       <h2>Ready to start?</h2>
-      <p>Fill out the form below and we'll reach out with next steps and payment details.</p>
+      <p>
+        Fill out the form below and we'll reach out with next steps and payment details.
+      </p>
     </div>
 
     <form
       class="apply-form"
-      action="https://formspree.io/f/YOUR_FORM_ID"
-      method="POST"
+      id="applicationForm"
     >
+
       <div class="form-row">
         <div class="form-group">
           <label for="fullName">Full name</label>
-          <input type="text" id="fullName" name="fullName" required placeholder="Jane Doe">
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="Jane Doe"
+          >
         </div>
+
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" id="email" name="email" required placeholder="jane@email.com">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="jane@email.com"
+          >
         </div>
       </div>
+
 
       <div class="form-row">
         <div class="form-group">
           <label for="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+1 (000) 000-0000"
+          >
         </div>
+
         <div class="form-group">
           <label for="program">Program interested in</label>
-          <select id="program" name="program" required>
-            <option value="" disabled selected>Select a program</option>
-            <option value="Free Intro to Web Development">Free Intro to Web Development</option>
-            <option value="Front-End Development">Front-End Development</option>
-            <option value="Back-End Development">Back-End Development</option>
-            <option value="Virtual Assistant">Virtual Assistant</option>
-            <option value="Cyber Security">Cyber Security</option>
+
+          <select
+            id="program"
+            name="program"
+            required
+          >
+            <option value="" disabled selected>
+              Select a program
+            </option>
+
+            <option value="Free Intro to Web Development">
+              Free Intro to Web Development
+            </option>
+
+            <option value="Front-End Development">
+              Front-End Development
+            </option>
+
+            <option value="Back-End Development">
+              Back-End Development
+            </option>
+
+            <option value="Virtual Assistant">
+              Virtual Assistant
+            </option>
+
+            <option value="Cyber Security">
+              Cyber Security
+            </option>
           </select>
         </div>
       </div>
 
+
       <div class="form-group">
-        <label for="experience">Do you have any prior experience?</label>
-        <select id="experience" name="experience">
-          <option value="None">None — complete beginner</option>
-          <option value="Some">Some — self-taught or dabbled</option>
-          <option value="Experienced">Experienced — looking to sharpen skills</option>
+        <label for="experience">
+          Do you have any prior experience?
+        </label>
+
+        <select
+          id="experience"
+          name="experience"
+        >
+          <option value="None">
+            None — complete beginner
+          </option>
+
+          <option value="Some">
+            Some — self-taught or dabbled
+          </option>
+
+          <option value="Experienced">
+            Experienced — looking to sharpen skills
+          </option>
         </select>
       </div>
 
+
       <div class="form-group">
-        <label for="message">Why do you want to join? <span class="optional">(optional)</span></label>
-        <textarea id="message" name="message" rows="4" placeholder="Tell us a little about your goals..."></textarea>
+        <label for="message">
+          Why do you want to join?
+          <span class="optional">(optional)</span>
+        </label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          placeholder="Tell us a little about your goals..."
+        ></textarea>
       </div>
 
-      <button type="submit" class="btn-primary full">Submit Application</button>
-      <p class="form-note">We typically respond within 2 business days.</p>
+
+      <button
+        type="submit"
+        class="btn-primary full"
+        id="submitButton"
+      >
+        Submit Application
+      </button>
+
+      <p class="form-note">
+        We typically respond within 2 business days.
+      </p>
+
+      <!-- Success/Error message -->
+      <div
+        id="formMessage"
+        class="form-message"
+        style="display: none;"
+      ></div>
+
     </form>
   </div>
 </section>
 
+
+<script>
+  const form = document.getElementById("applicationForm");
+  const submitButton = document.getElementById("submitButton");
+  const formMessage = document.getElementById("formMessage");
+
+  /*
+    IMPORTANT:
+    Replace this URL with the Web App URL
+    you received from Google Apps Script.
+  */
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    // Disable button while submitting
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    // Hide previous message
+    formMessage.style.display = "none";
+    formMessage.textContent = "";
+
+
+    // Collect all form fields
+    const formData = new FormData(form);
+
+
+    try {
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+
+      /*
+        Google Apps Script receives the data
+        and adds it to your Google Sheet.
+      */
+
+      formMessage.textContent =
+        "Application submitted successfully! We'll get back to you within 2 business days.";
+
+      formMessage.style.display = "block";
+      formMessage.style.color = "green";
+
+
+      // Clear the form
+      form.reset();
+
+
+    } catch (error) {
+
+      console.error("Form submission error:", error);
+
+      formMessage.textContent =
+        "Something went wrong. Please try again.";
+
+      formMessage.style.display = "block";
+      formMessage.style.color = "red";
+
+    }
+
+
+    // Re-enable button
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Application";
+  });
+</script>
 <footer>
   <div class="wrap">
     <div class="footer-grid">
