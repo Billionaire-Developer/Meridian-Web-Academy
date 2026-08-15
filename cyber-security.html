@@ -473,14 +473,14 @@
     </div>
     <div class="pricing-tiers">
       <div class="tier-card">
-        <div class="tier-label">4 Installments</div>
-        <div class="tier-price">$175<span style="font-size:14px;color:var(--slate);">/mo</span></div>
-        <div class="tier-note">$175 x3, then $174 — spread across the program</div>
+        <div class="tier-label">3 Installments</div>
+        <div class="tier-price">#50,000<span style="font-size:14px;color:var(--slate);">/mo</span></div>
+        <div class="tier-note">#50,000 x3 — spread across the program</div>
         <a href="index.html#enroll" class="btn-ghost full">Apply Now</a>
       </div>
       <div class="tier-card featured">
         <div class="tier-label">Full Payment</div>
-        <div class="tier-price">$699</div>
+        <div class="tier-price">#150,000</div>
         <div class="tier-note">One-time payment, paid in full</div>
         <a href="index.html#enroll" class="btn-primary full">Apply Now</a>
       </div>
@@ -522,12 +522,65 @@
 <section>
   <div class="wrap">
     <div class="help-banner">
-      <h3>Still have questions?</h3>
-      <p>Reach out and we'll help you figure out if this program is the right fit.</p>
-      <a href="mailto:hello@yourdomain.com" class="btn-primary">Contact Us</a>
+      <div class="section-head">
+        <div class="kicker">// contact us</div>
+        <h3>Still have questions?</h3>
+        <p>Send us a message and we'll get back to you shortly.</p>
+      </div>
+
+      <form class="contact-form" action="#" method="POST">
+
+        <div class="form-row">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full name"
+            required
+          >
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            required
+          >
+        </div>
+
+        <div class="form-row">
+          <select name="program" required>
+            <option value="" disabled selected>Program of interest</option>
+            <option value="frontend">Frontend Development</option>
+            <option value="backend">Backend Development</option>
+            <option value="devops">DevOps</option>
+            <option value="data-science">Data Science</option>
+            <option value="cyber-security">Cyber Security</option>
+            <option value="virtual-assistance">Virtual Assistance</option>
+          </select>
+
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            required
+          >
+        </div>
+
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Your message..."
+          required
+        ></textarea>
+
+        <button type="submit" class="btn-primary">
+          Send Message
+        </button>
+
+      </form>
     </div>
   </div>
 </section>
+
 
 <footer>
   <div class="wrap">
