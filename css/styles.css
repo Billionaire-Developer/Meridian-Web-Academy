@@ -455,6 +455,27 @@
   }
   .form-group textarea{resize:vertical; min-height:90px;}
 
+  /*  =====FOR FORM-SELECTION======== */
+  .form-select{margin-bottom:20px;}
+  .form-select label{
+    display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;
+  }
+  .form-group label .optional{color:var(--slate); font-weight:400;}
+
+  .form-select input,
+  .form-select select,
+  .form-select textarea{
+    width:100%; font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; outline:none;
+  }
+  .form-select input:focus,
+  .form-select select:focus,
+  .form-select textarea:focus{
+    border-color:var(--teal); box-shadow:0 0 0 3px rgba(14,110,92,0.12);
+  }
+  .form-select textarea{resize:vertical; min-height:90px;} 
+
   .apply-form .full{width:100%; text-align:center; border:none; cursor:pointer; font-family:'Inter',sans-serif;}
   .form-note{
     text-align:center; font-size:12.5px; color:var(--slate); margin-top:14px;
