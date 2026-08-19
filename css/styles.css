@@ -592,3 +592,33 @@ footer{background:var(--navy); color:#AEB6C8; padding:clamp(40px,7vw,64px) 28px 
 @media (max-width:480px){
   .footer-bottom{ flex-direction:column; align-items:flex-start; }
 }
+
+
+
+
+
+
+
+/* ----- This is the form select styling ----- */
+
+
+
+.form-select{margin-bottom:20px;}
+.form-select label{
+  display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;
+}
+.form-select label .optional{color:var(--slate); font-weight:400;}
+
+.form-select input,
+.form-select select,
+.form-select textarea{
+  width:100%; font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ink);
+  background:var(--paper); border:1px solid var(--line); border-radius:8px;
+  padding:12px 14px; outline:none;
+}
+.form-select input:focus,
+.form-select select:focus,
+.form-select textarea:focus{
+  border-color:var(--teal); box-shadow:0 0 0 3px rgba(14,110,92,0.12);
+}
+.form-select textarea{resize:vertical; min-height:90px;}
